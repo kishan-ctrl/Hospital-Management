@@ -29,17 +29,15 @@ export default function BookingModal({ isOpen, onClose }) {
     }, 2000);
   };
 
-  if (!isOpen) return null;
-
   return (
-    <div className="fixed inset-0 z-50 grid place-items-center bg-slate-950/70 backdrop-blur-md p-4 overflow-y-auto">
+    <div className={`fixed inset-0 z-50 grid place-items-center bg-slate-950/60 backdrop-blur-md p-4 overflow-y-auto transition-opacity duration-300 ${isOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}>
       
-      <div className="relative w-full max-w-md rounded-3xl bg-white p-8 shadow-2xl z-10 text-left">
+      <div className={`relative w-full max-w-md rounded-3xl bg-white p-8 shadow-2xl z-10 text-left transition-all duration-300 ${isOpen ? 'scale-100 translate-y-0 opacity-100' : 'scale-95 translate-y-4 opacity-0'}`}>
         
         {/* Close */}
         <button 
           onClick={onClose}
-          className="absolute top-4 right-4 rounded-full p-2 text-slate-400 hover:bg-slate-100 hover:text-slate-700 transition"
+          className="absolute top-4 right-4 rounded-full p-2 text-slate-400 hover:bg-slate-100 hover:text-slate-700 transition cursor-pointer"
         >
           <X className="h-5 w-5" />
         </button>
@@ -54,7 +52,7 @@ export default function BookingModal({ isOpen, onClose }) {
         </p>
 
         {bookingSuccess ? (
-          <div className="mt-8 p-6 text-center space-y-3 rounded-2xl bg-teal-50 border border-teal-100">
+          <div className="mt-8 p-6 text-center space-y-3 rounded-2xl bg-teal-50 border border-teal-100 animate-scale-in">
             <CheckCircle2 className="h-10 w-10 text-teal-500 mx-auto animate-bounce" />
             <h4 className="text-sm font-extrabold text-blue-950">Appointment Requested!</h4>
             <p className="text-[11px] font-semibold text-slate-500">We will verify and contact you shortly.</p>
@@ -69,7 +67,7 @@ export default function BookingModal({ isOpen, onClose }) {
                 value={formData.name}
                 onChange={(e) => setFormData({...formData, name: e.target.value})}
                 placeholder="John Doe" 
-                className="w-full rounded-xl border border-slate-200 px-4 py-3 text-xs focus:border-teal-500 focus:outline-hidden bg-slate-50/50"
+                className="w-full rounded-xl border border-slate-200 px-4 py-3 text-xs focus:border-teal-500 focus:outline-hidden bg-slate-50/50 transition-colors"
               />
             </div>
 
@@ -82,7 +80,7 @@ export default function BookingModal({ isOpen, onClose }) {
                   value={formData.email}
                   onChange={(e) => setFormData({...formData, email: e.target.value})}
                   placeholder="john@example.com" 
-                  className="w-full rounded-xl border border-slate-200 px-4 py-3 text-xs focus:border-teal-500 focus:outline-hidden bg-slate-50/50"
+                  className="w-full rounded-xl border border-slate-200 px-4 py-3 text-xs focus:border-teal-500 focus:outline-hidden bg-slate-50/50 transition-colors"
                 />
               </div>
               <div>
@@ -93,7 +91,7 @@ export default function BookingModal({ isOpen, onClose }) {
                   value={formData.phone}
                   onChange={(e) => setFormData({...formData, phone: e.target.value})}
                   placeholder="+1 (555) 000-0000" 
-                  className="w-full rounded-xl border border-slate-200 px-4 py-3 text-xs focus:border-teal-500 focus:outline-hidden bg-slate-50/50"
+                  className="w-full rounded-xl border border-slate-200 px-4 py-3 text-xs focus:border-teal-500 focus:outline-hidden bg-slate-50/50 transition-colors"
                 />
               </div>
             </div>
@@ -103,7 +101,7 @@ export default function BookingModal({ isOpen, onClose }) {
               <select 
                 value={formData.service}
                 onChange={(e) => setFormData({...formData, service: e.target.value})}
-                className="w-full rounded-xl border border-slate-200 px-4 py-3 text-xs focus:border-teal-500 focus:outline-hidden bg-slate-50/50"
+                className="w-full rounded-xl border border-slate-200 px-4 py-3 text-xs focus:border-teal-500 focus:outline-hidden bg-slate-50/50 transition-colors"
               >
                 <option>General Consultation</option>
                 <option>Pharmacy / Prescription</option>
@@ -122,7 +120,7 @@ export default function BookingModal({ isOpen, onClose }) {
                   required 
                   value={formData.date}
                   onChange={(e) => setFormData({...formData, date: e.target.value})}
-                  className="w-full rounded-xl border border-slate-200 px-4 py-3 text-xs focus:border-teal-500 focus:outline-hidden bg-slate-50/50"
+                  className="w-full rounded-xl border border-slate-200 px-4 py-3 text-xs focus:border-teal-500 focus:outline-hidden bg-slate-50/50 transition-colors"
                 />
               </div>
               <div>
@@ -130,7 +128,7 @@ export default function BookingModal({ isOpen, onClose }) {
                 <select 
                   value={formData.time}
                   onChange={(e) => setFormData({...formData, time: e.target.value})}
-                  className="w-full rounded-xl border border-slate-200 px-4 py-3 text-xs focus:border-teal-500 focus:outline-hidden bg-slate-50/50"
+                  className="w-full rounded-xl border border-slate-200 px-4 py-3 text-xs focus:border-teal-500 focus:outline-hidden bg-slate-50/50 transition-colors"
                 >
                   <option>Morning (9:00 AM - 12:00 PM)</option>
                   <option>Afternoon (12:00 PM - 4:00 PM)</option>
@@ -141,7 +139,7 @@ export default function BookingModal({ isOpen, onClose }) {
 
             <button 
               type="submit"
-              className="mt-4 w-full rounded-xl bg-teal-500 py-3 text-xs font-bold uppercase tracking-wider text-white shadow-md shadow-teal-500/20 hover:bg-teal-600 transition"
+              className="shine-hover mt-4 w-full rounded-xl bg-teal-500 py-3 text-xs font-bold uppercase tracking-wider text-white shadow-md shadow-teal-500/20 hover:bg-teal-600 hover:-translate-y-0.5 active:translate-y-0 transition cursor-pointer"
             >
               Book Session Now
             </button>
@@ -153,3 +151,4 @@ export default function BookingModal({ isOpen, onClose }) {
     </div>
   );
 }
+

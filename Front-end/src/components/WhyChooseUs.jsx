@@ -1,6 +1,7 @@
 import React from 'react';
 import { HeartPulse, CheckCircle2, ArrowRight, Building2, Phone } from 'lucide-react';
 import { IMAGES } from '../constants/images';
+import ScrollReveal from './ScrollReveal';
 
 export default function WhyChooseUs({ onBookClick }) {
   return (
@@ -10,9 +11,9 @@ export default function WhyChooseUs({ onBookClick }) {
         <div className="grid lg:grid-cols-12 gap-8 items-stretch">
           
           {/* Left: Building Image with Mission Badge */}
-          <div className="lg:col-span-4 relative rounded-3xl overflow-hidden min-h-[350px] shadow-lg bg-slate-200">
+          <ScrollReveal delay={100} className="lg:col-span-4 relative rounded-3xl overflow-hidden min-h-[350px] shadow-lg bg-slate-200 group flex flex-col justify-end">
             <img 
-              className="h-full w-full object-cover" 
+              className="absolute inset-0 h-full w-full object-cover group-hover:scale-105 transition duration-700 ease-out" 
               src={IMAGES.building} 
               alt="MediWell Pharma modern clinical hospital building" 
             />
@@ -20,7 +21,7 @@ export default function WhyChooseUs({ onBookClick }) {
             {/* Curved Floating Mission Badge */}
             <div className="absolute bottom-5 left-5 right-5 glass-panel p-4.5 rounded-2xl border border-white/60 text-left">
               <div className="flex gap-3">
-                <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-teal-500 text-white">
+                <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-teal-500 text-white shadow-sm">
                   <HeartPulse className="h-5 w-5" />
                 </div>
                 <div>
@@ -31,10 +32,10 @@ export default function WhyChooseUs({ onBookClick }) {
                 </div>
               </div>
             </div>
-          </div>
+          </ScrollReveal>
 
           {/* Middle: Why Choose Us details */}
-          <div className="lg:col-span-5 space-y-6 text-left flex flex-col justify-center py-4">
+          <ScrollReveal delay={200} className="lg:col-span-5 space-y-6 text-left flex flex-col justify-center py-4">
             <div>
               <h2 className="text-2xl sm:text-3xl font-extrabold text-blue-950 tracking-tight">
                 Why Choose <span className="text-teal-500">MediWell</span> Pharma?
@@ -53,9 +54,9 @@ export default function WhyChooseUs({ onBookClick }) {
                 'Experienced & Caring Professionals',
                 'Advanced Technology & Facilities',
               ].map((item) => (
-                <li key={item} className="flex items-center gap-3">
-                  <div className="flex h-5.5 w-5.5 items-center justify-center rounded-full bg-teal-50 text-teal-600 border border-teal-100">
-                    <CheckCircle2 className="h-4 w-4" />
+                <li key={item} className="flex items-center gap-3 group">
+                  <div className="flex h-5.5 w-5.5 items-center justify-center rounded-full bg-teal-50 text-teal-600 border border-teal-100 group-hover:scale-110 transition duration-300">
+                    <CheckCircle2 className="h-4 w-4 group-hover:rotate-12 transition-transform" />
                   </div>
                   <span className="text-xs sm:text-sm font-bold text-slate-700">{item}</span>
                 </li>
@@ -65,46 +66,48 @@ export default function WhyChooseUs({ onBookClick }) {
             <div className="pt-2">
               <button 
                 onClick={onBookClick}
-                className="inline-flex items-center gap-2 rounded-full border-2 border-slate-200 bg-white px-6 py-3 text-xs font-bold uppercase tracking-wider text-slate-700 transition duration-300 hover:border-teal-500 hover:text-teal-600 hover:bg-teal-50/10"
+                className="shine-hover inline-flex items-center gap-2 rounded-full border-2 border-slate-200 bg-white px-6 py-3 text-xs font-bold uppercase tracking-wider text-slate-700 transition duration-300 hover:border-teal-500 hover:text-teal-600 hover:bg-teal-50/10 hover:-translate-y-0.5 active:translate-y-0 cursor-pointer"
               >
                 Learn More About Us
                 <ArrowRight className="h-4 w-4" />
               </button>
             </div>
-          </div>
+          </ScrollReveal>
 
           {/* Right: Emergency Help Card */}
-          <div className="lg:col-span-3 rounded-3xl bg-blue-600 text-white p-6 shadow-xl flex flex-col justify-between relative overflow-hidden">
-            {/* Background ambulance watermark/pattern */}
-            <div className="absolute top-0 right-0 opacity-10 pointer-events-none scale-150 transform translate-x-1/4 -translate-y-1/4">
-              <Building2 className="h-48 w-48" />
-            </div>
+          <ScrollReveal delay={300} className="lg:col-span-3 h-full">
+            <div className="h-full rounded-3xl bg-blue-600 text-white p-6 shadow-xl flex flex-col justify-between relative overflow-hidden group">
+              {/* Background ambulance watermark/pattern */}
+              <div className="absolute top-0 right-0 opacity-10 pointer-events-none scale-150 transform translate-x-1/4 -translate-y-1/4">
+                <Building2 className="h-48 w-48" />
+              </div>
 
-            <div className="space-y-4 relative text-left">
-              <h3 className="text-lg font-extrabold tracking-tight">Need Emergency Help?</h3>
-              <p className="text-xs text-blue-100 font-medium leading-relaxed">
-                We are available 24/7 for emergencies. Your health is our priority.
-              </p>
-            </div>
+              <div className="space-y-4 relative text-left">
+                <h3 className="text-lg font-extrabold tracking-tight">Need Emergency Help?</h3>
+                <p className="text-xs text-blue-100 font-medium leading-relaxed">
+                  We are available 24/7 for emergencies. Your health is our priority.
+                </p>
+              </div>
 
-            <div className="my-6 relative rounded-2xl overflow-hidden bg-blue-700 border border-blue-500 h-28">
-              <img 
-                className="h-full w-full object-cover" 
-                src={IMAGES.ambulance} 
-                alt="Emergency Ambulance service" 
-              />
-            </div>
+              <div className="my-6 relative rounded-2xl overflow-hidden bg-blue-700 border border-blue-500 h-28">
+                <img 
+                  className="h-full w-full object-cover group-hover:scale-105 transition duration-500" 
+                  src={IMAGES.ambulance} 
+                  alt="Emergency Ambulance service" 
+                />
+              </div>
 
-            <div className="relative">
-              <a 
-                href="tel:+12345678900" 
-                className="flex items-center justify-center gap-3 w-full rounded-2xl bg-white text-blue-900 py-4 shadow-md font-extrabold hover:bg-blue-50 transition active:scale-95"
-              >
-                <Phone className="h-5 w-5 text-blue-600 animate-bounce" />
-                +1 234 567 8900
-              </a>
+              <div className="relative">
+                <a 
+                  href="tel:+12345678900" 
+                  className="phone-action-hover flex items-center justify-center gap-3 w-full rounded-2xl bg-white text-blue-900 py-4 shadow-md font-extrabold hover:bg-blue-50 hover:-translate-y-0.5 active:translate-y-0 transition duration-300"
+                >
+                  <Phone className="h-5 w-5 text-blue-600 animate-bounce" />
+                  +1 234 567 8900
+                </a>
+              </div>
             </div>
-          </div>
+          </ScrollReveal>
 
         </div>
 
@@ -112,3 +115,4 @@ export default function WhyChooseUs({ onBookClick }) {
     </section>
   );
 }
+
