@@ -1,5 +1,6 @@
 import React from 'react';
 import { Award, Users, HeartPulse, Building2 } from 'lucide-react';
+import ScrollReveal from './ScrollReveal';
 
 export default function Stats() {
   const statsList = [
@@ -19,16 +20,17 @@ export default function Stats() {
           {statsList.map((stat, idx) => {
             const Icon = stat.icon;
             return (
-              <div 
+              <ScrollReveal 
                 key={idx} 
+                delay={idx * 100}
                 className={`space-y-1 ${stat.isWide ? 'col-span-2 md:col-span-1' : ''}`}
               >
-                <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-white/10 text-teal-100">
+                <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-white/10 text-teal-100 hover:scale-115 hover:bg-white/20 transition-all duration-300">
                   <Icon className="h-6 w-6" />
                 </div>
-                <p className="text-3xl font-extrabold tracking-tight pt-1">{stat.value}</p>
-                <p className="text-xs font-semibold text-teal-100 uppercase tracking-wider">{stat.label}</p>
-              </div>
+                <p className="text-3xl font-extrabold tracking-tight pt-1 cursor-default hover:scale-105 transition-transform duration-300">{stat.value}</p>
+                <p className="text-[10px] font-extrabold text-teal-50 uppercase tracking-wider">{stat.label}</p>
+              </ScrollReveal>
             );
           })}
         </div>
@@ -37,3 +39,4 @@ export default function Stats() {
     </section>
   );
 }
+
