@@ -25,7 +25,7 @@ const connectDatabase = async () => {
     logger.info('Database connection established successfully.');
     retryCount = 0;
 
-    // Auto-seed default admin if not present
+    // Auto-seed default admin 
     try {
       const email = 'admin@hospital.com';
       const existingAdmin = await User.findOne({ email });
