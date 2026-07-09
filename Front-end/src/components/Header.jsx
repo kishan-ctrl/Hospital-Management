@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { HeartPulse, Phone, Menu, X } from 'lucide-react';
 
-export default function Header({ onBookClick }) {
+export default function Header({ onBookClick, user, onLoginClick, onLogout }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
@@ -54,6 +54,28 @@ export default function Header({ onBookClick }) {
               </div>
             </div>
 
+            {/* Auth Greeting & Buttons */}
+            {user ? (
+              <div className="flex items-center gap-4">
+                <span className="text-xs font-extrabold text-blue-900 bg-blue-50/80 px-3.5 py-2 rounded-xl border border-blue-100">
+                  Hi, {user.name}
+                </span>
+                <button 
+                  onClick={onLogout}
+                  className="rounded-full bg-rose-50 border border-rose-100 text-rose-600 px-5 py-2 text-xs font-bold uppercase tracking-wider hover:bg-rose-100 active:scale-95 transition-all cursor-pointer"
+                >
+                  Logout
+                </button>
+              </div>
+            ) : (
+              <button 
+                onClick={onLoginClick}
+                className="rounded-full bg-blue-50 border border-blue-100 text-blue-600 px-6 py-2 text-xs font-bold uppercase tracking-wider hover:bg-blue-100 active:scale-95 transition-all cursor-pointer"
+              >
+                Login
+              </button>
+            )}
+
             {/* Book button */}
             <button 
               onClick={onBookClick}
@@ -78,7 +100,7 @@ export default function Header({ onBookClick }) {
 
       {/* Mobile Dropdown Menu */}
       {mobileMenuOpen && (
-        <div className="lg:hidden border-t border-slate-100 bg-white/95 backdrop-blur-lg px-4 pt-4 pb-6 space-y-3 shadow-lg">
+        <div className="lg:hidden border-t border-slate-100 bg-white/95 backdrop-blur-lg px-4 pt-4 pb-6 space-y-3 shadow-lg text-left">
           {['Home', 'About Us', 'Our Services', 'Products', 'Contact Us'].map((item) => (
             <a 
               key={item} 
@@ -99,6 +121,33 @@ export default function Header({ onBookClick }) {
                 <p className="text-[10px] font-medium text-slate-500">24/7 Emergency Support</p>
               </div>
             </div>
+
+            {/* Mobile Auth Button */}
+            {user ? (
+              <div className="flex items-center justify-between px-4 py-2 bg-blue-50/50 rounded-xl border border-blue-100">
+                <span className="text-xs font-bold text-blue-900">Hi, {user.name}</span>
+                <button 
+                  onClick={() => {
+                    setMobileMenuOpen(false);
+                    onLogout();
+                  }}
+                  className="rounded-lg bg-rose-50 text-rose-600 border border-rose-100 px-3 py-1.5 text-xs font-bold uppercase transition"
+                >
+                  Logout
+                </button>
+              </div>
+            ) : (
+              <button 
+                onClick={() => {
+                  setMobileMenuOpen(false);
+                  onLoginClick();
+                }}
+                className="w-full rounded-full bg-blue-50 border border-blue-100 text-blue-600 py-3 text-center text-xs font-bold uppercase transition"
+              >
+                Login
+              </button>
+            )}
+
             <button 
               onClick={() => {
                 setMobileMenuOpen(false);
