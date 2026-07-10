@@ -18,7 +18,7 @@ import appointmentRoutes from './routes/appointmentRoutes.js';
 import medicalRecordRoutes from './routes/medicalRecordRoutes.js';
 
 
-// Load environment configurations
+// Load environment configurations (Force reload)
 dotenv.config();
 
 const app = express();
