@@ -2,6 +2,8 @@ import MedicalRecord from '../models/MedicalRecord.js';
 import User from '../models/User.js';
 import AppError from '../utils/AppError.js';
 import s3 from "../config/s3.js";
+import fs from 'fs';
+import path from 'path';
 
 import {
     PutObjectCommand
@@ -26,41 +28,54 @@ export const createMedicalRecord = async (req, res, next) => {
     // 2. Build attachments array from uploaded files (if any)
     const attachments = [];
 
-if (req.files && req.files.length > 0) {
-
-    for (const file of req.files) {
-
-        const fileName =
-            `${Date.now()}-${file.originalname}`;
-
-        await s3.send(
-
-            new PutObjectCommand({
-
+    if (req.files && req.files.length > 0) {
+      for (const file of req.files) {
+        const fileName = `${Date.now()}-${file.originalname}`;
+        
+        let s3Success = false;
+        // Only attempt S3 if AWS credentials are set and not the 'test_key' placeholder
+        if (process.env.AWS_ACCESS_KEY_ID && process.env.AWS_ACCESS_KEY_ID !== 'test_key') {
+          try {
+            await s3.send(
+              new PutObjectCommand({
                 Bucket: process.env.AWS_BUCKET_NAME,
-
                 Key: fileName,
-
                 Body: file.buffer,
-
                 ContentType: file.mimetype
+              })
+            );
+            
+            attachments.push({
+              name: file.originalname,
+              url: `https://${process.env.AWS_BUCKET_NAME}.s3.${process.env.AWS_REGION}.amazonaws.com/${fileName}`
+            });
+            s3Success = true;
+          } catch (s3Error) {
+            console.error("S3 upload failed, falling back to local disk storage:", s3Error.message);
+          }
+        }
 
-            })
-
-        );
-
-        attachments.push({
-
-            name: file.originalname,
-
-            url:
-                `https://${process.env.AWS_BUCKET_NAME}.s3.${process.env.AWS_REGION}.amazonaws.com/${fileName}`
-
-        });
-
+        // Resilient fallback: write file to local uploads directory
+        if (!s3Success) {
+          try {
+            const uploadDir = path.join(process.cwd(), 'uploads');
+            if (!fs.existsSync(uploadDir)) {
+              fs.mkdirSync(uploadDir, { recursive: true });
+            }
+            
+            const filePath = path.join(uploadDir, fileName);
+            await fs.promises.writeFile(filePath, file.buffer);
+            
+            attachments.push({
+              name: file.originalname,
+              url: `/uploads/${fileName}`
+            });
+          } catch (localWriteError) {
+            return next(new AppError(`File save failed: ${localWriteError.message}`, 500));
+          }
+        }
+      }
     }
-
-}
     // 3. Create the Medical Record
     const medicalRecord = await MedicalRecord.create({
       patient,

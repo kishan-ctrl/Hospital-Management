@@ -604,7 +604,7 @@ export default function DoctorDashboard({ user, onLogout }) {
                                     rel="noreferrer"
                                     className="flex items-center gap-1.5 text-[10px] font-bold text-blue-600 bg-white border border-slate-200 hover:border-blue-400 px-3 py-1.5 rounded-lg shadow-2xs transition"
                                   >
-                                    <FileIcon className="h-3 w-3 text-rose-500" />
+                                    <FileText className="h-3 w-3 text-rose-500" />
                                     <span className="truncate max-w-[120px]">{file.name}</span>
                                     <Download className="h-3 w-3 text-slate-400 shrink-0" />
                                   </a>
