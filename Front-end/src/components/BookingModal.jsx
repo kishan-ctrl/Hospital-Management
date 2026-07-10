@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Calendar, X, CheckCircle2, ShieldAlert, User, Clock, AlertCircle, Mic, MicOff } from 'lucide-react';
 
-const API_BASE_URL = 'http://localhost:5000/api';
+import API_BASE_URL from "../config/api";
 
 export default function BookingModal({ isOpen, onClose, user, onPromptLogin }) {
   const [bookingSuccess, setBookingSuccess] = useState(false);
