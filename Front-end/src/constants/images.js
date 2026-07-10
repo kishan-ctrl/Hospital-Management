@@ -25,6 +25,6 @@ export const IMAGES = {
   // Doctors avatars
   avatar1: 'https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&q=80&w=150',
   avatar2: 'https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&q=80&w=150',
-  avatar3: 'https://images.unsplash.com/photo-1594824813573-246434de83fb?auto=format&fit=crop&q=80&w=150',
+  avatar3: 'https://tse1.mm.bing.net/th/id/OIP.3jHLBFQwW7ZEXC74jM2JIAHaLH?r=0&rs=1&pid=ImgDetMain&o=7&rm=3',
   avatar4: 'https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?auto=format&fit=crop&q=80&w=150',
 };
