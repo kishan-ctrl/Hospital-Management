@@ -1,0 +1,14 @@
+services:
+  hms-backend:
+    build: ./backend
+    container_name: hms-backend
+    ports:
+      - "5000:5000"
+    env_file:
+      - ./backend/.env
+    restart: unless-stopped
+    volumes:
+      - hms_uploads:/app/uploads
+
+volumes:
+  hms_uploads:

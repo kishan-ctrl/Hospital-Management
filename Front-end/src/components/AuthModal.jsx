@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { X, User, Mail, Lock, Calendar, Phone, MapPin, Activity, ShieldAlert, HeartPulse } from 'lucide-react';
-import API_BASE_URL from "../config/api";
+
+const API_BASE_URL = 'http://localhost:5000/api';
 
 export default function AuthModal({ isOpen, onClose, onAuthSuccess }) {
   const [isLogin, setIsLogin] = useState(true);
