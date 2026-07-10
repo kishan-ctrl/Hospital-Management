@@ -10,10 +10,12 @@ import Footer from './components/Footer';
 import BookingModal from './components/BookingModal';
 import AuthModal from './components/AuthModal';
 import AdminDashboard from './components/AdminDashboard';
+import DoctorDashboard from './components/DoctorDashboard';
 import { ArrowRight, HeartPulse } from 'lucide-react';
 import './App.css';
+import API_BASE_URL from "../../Front-end/src/config/api";
 
-const API_BASE_URL = 'http://localhost:5000/api';
+
 
 function App() {
   const [appointmentModalOpen, setAppointmentModalOpen] = useState(false);
@@ -65,6 +67,10 @@ function App() {
 
   if (user && user.role === 'admin') {
     return <AdminDashboard user={user} onLogout={handleLogout} />;
+  }
+
+  if (user && user.role === 'doctor') {
+    return <DoctorDashboard user={user} onLogout={handleLogout} />;
   }
 
   return (

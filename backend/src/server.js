@@ -17,7 +17,8 @@ import patientRoutes from './routes/patientRoutes.js';
 import appointmentRoutes from './routes/appointmentRoutes.js';
 import medicalRecordRoutes from './routes/medicalRecordRoutes.js';
 
-// Load environment configurations
+
+// Load environment configurations (Force reload)
 dotenv.config();
 
 const app = express();
@@ -59,7 +60,7 @@ app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 
 // Serve Uploaded Files Statically
-app.use('/uploads', express.static(path.join(process.cwd(), 'uploads')));
+// app.use('/uploads', express.static(path.join(process.cwd(), 'uploads')));
 
 // 5. Rate Limiting: Limit request frequency from individual IP addresses
 const apiLimiter = rateLimit({
