@@ -1,6 +1,12 @@
 import MedicalRecord from '../models/MedicalRecord.js';
 import User from '../models/User.js';
 import AppError from '../utils/AppError.js';
+import s3 from "../config/s3.js";
+
+import {
+    PutObjectCommand
+} from "@aws-sdk/client-s3";
+
 
 /**
  * Doctor Creates a Medical Record (with optional medical imaging attachments)
@@ -19,20 +25,42 @@ export const createMedicalRecord = async (req, res, next) => {
 
     // 2. Build attachments array from uploaded files (if any)
     const attachments = [];
-    if (req.file) {
-      attachments.push({
-        name: req.file.originalname,
-        url: `/uploads/${req.file.filename}`,
-      });
-    } else if (req.files && Array.isArray(req.files)) {
-      req.files.forEach((file) => {
+
+if (req.files && req.files.length > 0) {
+
+    for (const file of req.files) {
+
+        const fileName =
+            `${Date.now()}-${file.originalname}`;
+
+        await s3.send(
+
+            new PutObjectCommand({
+
+                Bucket: process.env.AWS_BUCKET_NAME,
+
+                Key: fileName,
+
+                Body: file.buffer,
+
+                ContentType: file.mimetype
+
+            })
+
+        );
+
         attachments.push({
-          name: file.originalname,
-          url: `/uploads/${file.filename}`,
+
+            name: file.originalname,
+
+            url:
+                `https://${process.env.AWS_BUCKET_NAME}.s3.${process.env.AWS_REGION}.amazonaws.com/${fileName}`
+
         });
-      });
+
     }
 
+}
     // 3. Create the Medical Record
     const medicalRecord = await MedicalRecord.create({
       patient,
