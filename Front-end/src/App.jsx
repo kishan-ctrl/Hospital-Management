@@ -14,7 +14,7 @@ import DoctorDashboard from './components/DoctorDashboard';
 import { ArrowRight, HeartPulse } from 'lucide-react';
 import './App.css';
 
-const API_BASE_URL = 'http://localhost:5000/api';
+import API_BASE_URL from "./config/api";
 
 
 

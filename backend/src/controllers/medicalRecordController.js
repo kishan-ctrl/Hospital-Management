@@ -37,7 +37,7 @@ if (req.files && req.files.length > 0) {
 
             new PutObjectCommand({
 
-                Bucket: process.env.AWS_BUCKET_NAME,
+                Bucket: process.env.AWS_S3_BUCKET_NAME,
 
                 Key: fileName,
 
@@ -54,7 +54,7 @@ if (req.files && req.files.length > 0) {
             name: file.originalname,
 
             url:
-                `https://${process.env.AWS_BUCKET_NAME}.s3.${process.env.AWS_REGION}.amazonaws.com/${fileName}`
+            `https://${process.env.AWS_S3_BUCKET_NAME}.s3.${process.env.AWS_REGION}.amazonaws.com/${fileName}`
 
         });
 
