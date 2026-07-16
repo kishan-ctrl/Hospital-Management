@@ -46,7 +46,7 @@ export default function Header({ onBookClick, user, onLoginClick, onLogout }) {
               </div>
               <div className="text-left">
                 <a href="tel:+12345678900" className="text-sm font-extrabold text-blue-900 hover:text-blue-600 block leading-tight transition-colors">
-                  +1 234 567 8900
+                  +94 764593961
                 </a>
                 <span className="text-[10px] font-semibold text-slate-500 block">
                   24/7 Support
@@ -117,7 +117,7 @@ export default function Header({ onBookClick, user, onLoginClick, onLogout }) {
                 <Phone className="h-4.5 w-4.5" />
               </div>
               <div>
-                <a href="tel:+12345678900" className="text-sm font-extrabold text-blue-900 block leading-tight">+1 234 567 8900</a>
+                <a href="tel:+94764593961" className="text-sm font-extrabold text-blue-900 block leading-tight">+94 76 459 3961</a>
                 <p className="text-[10px] font-medium text-slate-500">24/7 Emergency Support</p>
               </div>
             </div>

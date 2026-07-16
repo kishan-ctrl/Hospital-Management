@@ -108,11 +108,11 @@ export default function Footer() {
             <ul className="space-y-3 text-xs font-semibold leading-relaxed">
               <li className="flex gap-2">
                 <span className="text-teal-500 font-extrabold">📍</span>
-                <span>123 HealthCare Street, New York, USA 10001</span>
+                <span>123/3 Koswatta Battaramulla, Sri-Lanka</span>
               </li>
               <li className="flex gap-2">
                 <span className="text-teal-500 font-extrabold">📞</span>
-                <a href="tel:+12345678900" className="hover:text-white transition">+1 234 567 8900</a>
+                <a href="tel:+94764593961" className="hover:text-white transition">+94 764593961</a>
               </li>
               <li className="flex gap-2">
                 <span className="text-teal-500 font-extrabold">✉️</span>
@@ -124,7 +124,7 @@ export default function Footer() {
         </div>
 
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between text-center gap-4 text-[11px] font-bold text-slate-500">
-          <p>© 2024 MediWell Pharma. All Rights Reserved.</p>
+          <p>© 2026 MediWell Pharma. All Rights Reserved.</p>
           <p>Designed for excellence in clinical solutions.</p>
         </div>
 

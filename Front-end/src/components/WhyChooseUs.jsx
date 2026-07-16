@@ -103,7 +103,7 @@ export default function WhyChooseUs({ onBookClick }) {
                   className="phone-action-hover flex items-center justify-center gap-3 w-full rounded-2xl bg-white text-blue-900 py-4 shadow-md font-extrabold hover:bg-blue-50 hover:-translate-y-0.5 active:translate-y-0 transition duration-300"
                 >
                   <Phone className="h-5 w-5 text-blue-600 animate-bounce" />
-                  +1 234 567 8900
+                  +94 76 459 3961
                 </a>
               </div>
             </div>
